@@ -105,7 +105,7 @@ export const warriorsData = [
   },
   {
     id: 'dhangar',
-    name: { en: 'The Dhangar Mavala', hi: 'धनगर मावला' },
+    name: { en: 'Dhangar Mavala', hi: 'धनगर मावला' },
     title: { en: 'Indigenous Intelligence', hi: 'स्वदेशी खुफिया नेटवर्क' },
     icon: <Users size={48} />,
     faceImage: null,
