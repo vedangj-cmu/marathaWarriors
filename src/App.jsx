@@ -1,6 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Globe, BookOpen, Shield, Mountain, Award, Users, Scissors, Sword } from 'lucide-react';
 
+// Import warrior background images
+import tanajiImage from './assets/warriors/tanaji-malusare.avif';
+import kondajiImage from './assets/warriors/kondaji-farzand.avif';
+import hambirraoImage from './assets/warriors/hambirrao-mohite.avif';
+import shivaImage from './assets/warriors/shiva-kashid.avif';
+import dhangariImage from './assets/warriors/dhangari-mavala.avif';
+import bajiImage from './assets/warriors/bajipradhu-deshpande.avif';
+
+// Import warrior face images
+import tanajiFace from './assets/warriors/tanaji-face.jpg';
+import kondajiFace from './assets/warriors/kondaji-face.jpg';
+import hambirraoFace from './assets/warriors/hambirrao-face.jpg';
+import shivaFace from './assets/warriors/shiva-face.jpg';
+import bajiFace from './assets/warriors/baji-face.jpg';
+
 // --- DATA ---
 // Sourced from "The Vanguard of Swarajya: A Historiographical Analysis of the Maratha Military Ethos (1645–1689)"
 const warriorsData = [
@@ -9,8 +24,9 @@ const warriorsData = [
         name: { en: 'Tanaji Malusare', hi: 'तानाजी मालुसरे' },
         title: { en: 'The Lion of Sinhagad', hi: 'सिंहगड का सिंह' },
         icon: <Sword size={48} />,
+        faceImage: tanajiFace,
         color: 'from-orange-500 to-red-600',
-        imgPlaceholder: 'https://images.unsplash.com/photo-1620300966961-d707c2957b4f?auto=format&fit=crop&q=80&w=800', // Represents Fort/Cliff
+        imgPlaceholder: tanajiImage,
         details: {
             en: (
                 <>
@@ -47,8 +63,9 @@ const warriorsData = [
         name: { en: 'Kondaji Farzand', hi: 'कोंडाजी फर्जंद' },
         title: { en: 'Master of Covert Warfare', hi: 'गुप्त युद्ध के स्वामी' },
         icon: <Shield size={48} />,
+        faceImage: kondajiFace,
         color: 'from-amber-600 to-orange-700',
-        imgPlaceholder: 'https://images.unsplash.com/photo-1590053158062-811c75908cb2?auto=format&fit=crop&q=80&w=800', // Represents Stealth/Night
+        imgPlaceholder: kondajiImage,
         details: {
             en: (
                 <>
@@ -85,8 +102,9 @@ const warriorsData = [
         name: { en: 'Hambirrao Mohite', hi: 'हंबीरराव मोहिते' },
         title: { en: 'The Constitutional Defender', hi: 'संवैधानिक रक्षक' },
         icon: <Award size={48} />,
+        faceImage: hambirraoFace,
         color: 'from-orange-600 to-red-700',
-        imgPlaceholder: 'https://images.unsplash.com/photo-1598556776374-2c76e2760813?auto=format&fit=crop&q=80&w=800', // Represents Army/Cavalry
+        imgPlaceholder: hambirraoImage,
         details: {
             en: (
                 <>
@@ -123,8 +141,9 @@ const warriorsData = [
         name: { en: 'Shiva Kashid', hi: 'शिवा काशीद' },
         title: { en: 'The Royal Doppelganger', hi: 'शाही प्रतिरूप' },
         icon: <Scissors size={48} />,
+        faceImage: shivaFace,
         color: 'from-yellow-600 to-orange-600',
-        imgPlaceholder: 'https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&q=80&w=800', // Represents Sacrifice/Disguise
+        imgPlaceholder: shivaImage,
         details: {
             en: (
                 <>
@@ -161,8 +180,9 @@ const warriorsData = [
         name: { en: 'The Dhangar Mavala', hi: 'धनगर मावला' },
         title: { en: 'Indigenous Intelligence', hi: 'स्वदेशी खुफिया नेटवर्क' },
         icon: <Users size={48} />,
+        faceImage: null, // No face image available for this warrior
         color: 'from-green-600 to-emerald-700',
-        imgPlaceholder: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800', // Represents Mountains/Nature
+        imgPlaceholder: dhangariImage,
         details: {
             en: (
                 <>
@@ -199,8 +219,9 @@ const warriorsData = [
         name: { en: 'Baji Prabhu Deshpande', hi: 'बाजी प्रभु देशपांडे' },
         title: { en: 'Defender of Pavan Khind', hi: 'पावनखिंड के रक्षक' },
         icon: <Mountain size={48} />,
+        faceImage: bajiFace,
         color: 'from-red-600 to-rose-800',
-        imgPlaceholder: 'https://images.unsplash.com/photo-1548504778-9005923595eb?auto=format&fit=crop&q=80&w=800', // Represents Battle/Canyon
+        imgPlaceholder: bajiImage,
         details: {
             en: (
                 <>
@@ -312,15 +333,25 @@ const WarriorSection = ({ warrior, lang }) => {
 
                     {/* Details State - "Pops up" */}
                     <div
-                        className={`absolute bottom-0 left-0 right-0 p-6 md:p-12 transition-all duration-700 transform ${activeStage === 1
+                        className={`absolute top-0 bottom-0 left-0 right-0 p-6 md:p-12 transition-all duration-700 transform flex items-end ${activeStage === 1
                                 ? 'opacity-100 translate-y-0'
                                 : 'opacity-0 translate-y-full'
                             }`}
                     >
-                        <div className="bg-white/95 backdrop-blur-md rounded-t-3xl shadow-2xl p-8 border-t-4 border-orange-500 max-h-[75vh] overflow-y-auto">
+                        <div className="bg-white/95 backdrop-blur-md rounded-t-3xl shadow-2xl p-8 border-t-4 border-orange-500 max-h-[85vh] overflow-y-auto w-full">
                             <div className="flex items-center gap-4 mb-6 border-b border-orange-200 pb-4">
-                                <div className={`p-3 rounded-full bg-gradient-to-br ${warrior.color} text-white shadow-lg`}>
-                                    {warrior.icon}
+                                <div className={`flex-shrink-0 w-20 h-20 rounded-full bg-gradient-to-br ${warrior.color} shadow-lg overflow-hidden border-4 border-white`}>
+                                    {warrior.faceImage ? (
+                                        <img
+                                            src={warrior.faceImage}
+                                            alt={warrior.name[lang]}
+                                            className="w-full h-full object-cover object-top scale-125"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-white">
+                                            {warrior.icon}
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="text-left">
                                     <h3 className="text-2xl font-bold text-gray-900">{warrior.name[lang]}</h3>
@@ -355,7 +386,7 @@ const App = () => {
         <div className="bg-orange-50 min-h-screen font-sans selection:bg-orange-200">
 
             {/* Intro Header */}
-            <div className="h-[60vh] flex flex-col items-center justify-center bg-gradient-to-br from-orange-600 to-red-700 text-white p-6 text-center shadow-xl z-20 relative">
+            <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-orange-600 to-red-700 text-white p-6 text-center shadow-xl z-20 relative">
                 <BookOpen size={48} className="mb-4 opacity-80" />
                 <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg font-serif">
                     {lang === 'en' ? 'The Vanguard of Swarajya' : 'स्वराज्य के अग्रदूत'}
